@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<javaBeans:Archive xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:javaBeans="http:///javaBeans.ecore" nom="demo.Jar">
+  <paquetage nom="gis4.al.composants">
+    <elements xsi:type="javaBeans:Composant" nom="SmileyBean" declenche="//@paquetage.0/@elements.2">
+      <methodes nom="toggleSmile"/>
+    </elements>
+    <elements xsi:type="javaBeans:Composant" nom="IncrementeurBean" ecoute="//@paquetage.0/@elements.2">
+      <proprietes xsi:type="javaBeans:ProprieteBean" nom="text" composant="//@paquetage.1/@elements.0"/>
+      <methodes nom="raz"/>
+      <methodes nom="incr"/>
+    </elements>
+    <elements xsi:type="javaBeans:Evenement" nom="sourire"/>
+    <elements xsi:type="javaBeans:Composant" nom="Temperature">
+      <proprietes xsi:type="javaBeans:ProprietePrimitive" nom="temperature" property="li&#xe9;e" primitive="double"/>
+    </elements>
+  </paquetage>
+  <paquetage nom="java.lang">
+    <elements xsi:type="javaBeans:Composant" nom="String"/>
+  </paquetage>
+  <paquetage nom="gis4.ppo">
+    <elements xsi:type="javaBeans:Composant" nom="Compte">
+      <proprietes xsi:type="javaBeans:ProprietePrimitive" nom="idCompte" primitive="int"/>
+      <proprietes xsi:type="javaBeans:ProprietePrimitive" nom="solde" property="contrainte" primitive="double"/>
+      <proprietes xsi:type="javaBeans:ProprieteBean" nom="nom" composant="//@paquetage.1/@elements.0"/>
+    </elements>
+  </paquetage>
+</javaBeans:Archive>

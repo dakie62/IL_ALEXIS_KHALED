@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated javaBeans -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="javaBeans.presentation.JavaBeansModelWizardID"
+            name="%_UI_JavaBeansModelWizard_label"
+            class="javaBeans.presentation.JavaBeansModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/JavaBeansModelFile.gif">
+         <description>%_UI_JavaBeansModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated javaBeans -->
+      <editor
+            id="javaBeans.presentation.JavaBeansEditorID"
+            name="%_UI_JavaBeansEditor_label"
+            icon="icons/full/obj16/JavaBeansModelFile.gif"
+            extensions="javabeans"
+            class="javaBeans.presentation.JavaBeansEditor"
+            contributorClass="javaBeans.presentation.JavaBeansActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

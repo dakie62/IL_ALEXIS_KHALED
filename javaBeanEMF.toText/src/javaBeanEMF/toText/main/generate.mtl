@@ -1,0 +1,92 @@
+[comment encoding = UTF-8 /]
+[module generate('http:///javaBeans.ecore')]
+
+
+[template public generateJavaBeans(anArchive : Archive)]
+[comment @main/]
+[descriptionPaquetage(anArchive)/]
+
+[/template]
+
+
+
+
+[template public descriptionPaquetage(anArchive:Archive)]
+[for (aPaquetage: Paquetage | anArchive.paquetage)]
+	[descriptionElementModele(aPaquetage)/]
+[/for]
+[/template]
+
+[template public descriptionElementModele(aPaquetage:Paquetage)]
+[for (aElement: ElementModele|aPaquetage.elements)]
+	[descriptionElementModele(aElement)/]
+[/for]
+[/template]
+
+
+[template public descriptionElementModele(aElement: ElementModele)/]
+
+
+[template public descriptionElementModele(aComposant: Composant)]
+[file (aComposant.nom+'.java',false,'UTF-8')]
+package [aComposant.proprietaire.nom/];
+
+public class [aComposant.nom/] implements java.io.Serializable 
+	[for (aEvenement: Evenement | aComposant.ecoute )]
+		 [descriptionElementModele(aEvenement)/]
+	[/for]  {
+
+	public [aComposant.nom/]() {}
+	[for (aMethode: Methode| aComposant.methodes)]
+		[descriptionElementModele(aMethode)/]
+	[/for]
+	[for (aEvenement: Evenement | aComposant.declenche )]
+		 [descriptionComposantDeclenche(aEvenement)/]
+	[/for]
+	[for (aPropriete: Propriete | aComposant.proprietes)]
+		[descriptionPropriete(aPropriete)/]
+	[/for]
+}
+[/file]
+[/template]
+
+
+
+[template public descriptionElementModele(aMethode: Methode)]
+public void [aMethode.nom/] () { ... }
+[/template]
+
+
+
+[template public descriptionElementModele(aEvenement: Evenement)]
+, [aEvenement.proprietaire.nom/].[aEvenement.nom/]
+[/template]
+
+[template public descriptionComposantDeclenche(aEvenement: Evenement)]
+public void add[aEvenement.nom.toUpperFirst()/]Listener([aEvenement.proprietaire.nom/].[aEvenement.nom.toUpperFirst()/]Listener   listener) { ... };
+public void remove[aEvenement.nom.toUpperFirst()/]Listener([aEvenement.proprietaire.nom/].[aEvenement.nom.toUpperFirst()/]Listener  listener) { ... };
+[/template]
+
+[template public descriptionPropriete(aPropriete: Propriete)]
+[/template]
+
+
+[template public descriptionPropriete(aPropriete: ProprietePrimitive)]
+public [aPropriete.primitive/] get[aPropriete.nom.toUpperFirst()/]() { ... } 
+public void set[aPropriete.nom.toUpperFirst()/]([aPropriete.primitive/] value) [if (aPropriete.property=Property::contrainte) ] throws java.beans.PropertyVetoException [/if] { ... }
+[if (aPropriete.property=Property::liée) ] 
+public void addPropertyChangeListener(java.beans.PropertyChangeListener l) { ... }
+public void removePropertyChangeListener(java.beans.PropertyChangeListener l) { ... }
+[/if]
+[if (aPropriete.property=Property::contrainte) ] 
+public void addPropertyVetoListener(java.beans.PropertyVetoListener l) { ... }
+public void removePropertyVetoListener(java.beans.PropertyVetoListener l) { ... }
+[/if]
+[/template]
+
+
+[template public descriptionPropriete(aPropriete: ProprieteBean)]
+public  [aPropriete.composant.proprietaire.nom/].[aPropriete.composant.nom.toUpperFirst()/] get[aPropriete.nom.toUpperFirst()/]() { ... } 
+public  void Set[aPropriete.nom.toUpperFirst()/]([aPropriete.composant.proprietaire.nom/].[aPropriete.composant.nom.toUpperFirst()/] value) { ... } 
+[/template]
+

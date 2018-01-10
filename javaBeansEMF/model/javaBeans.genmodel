@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/javaBeansEMF/src" modelPluginID="javaBeansEMF"
+    modelName="JavaBeans" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>javaBeans.ecore</foreignModel>
+  <genPackages prefix="JavaBeans" resource="XML" disposableProviderFactory="true"
+      ecorePackage="javaBeans.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="javaBeans.ecore#//ModeAcces">
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//ModeAcces/publique"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//ModeAcces/privee"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//ModeAcces/protege"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="javaBeans.ecore#//Primitive">
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/byte"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/char"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/short"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/int"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/long"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/float"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Primitive/double"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="javaBeans.ecore#//Property">
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Property/simple"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Property/indexee"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Property/liée"/>
+      <genEnumLiterals ecoreEnumLiteral="javaBeans.ecore#//Property/contrainte"/>
+    </genEnums>
+    <genClasses ecoreClass="javaBeans.ecore#//Evenement"/>
+    <genClasses ecoreClass="javaBeans.ecore#//ProprieteBean">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference javaBeans.ecore#//ProprieteBean/composant"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//ElementModele">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute javaBeans.ecore#//ElementModele/nom"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference javaBeans.ecore#//ElementModele/proprietaire"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//Composant">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference javaBeans.ecore#//Composant/proprietes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference javaBeans.ecore#//Composant/methodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference javaBeans.ecore#//Composant/declenche"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference javaBeans.ecore#//Composant/ecoute"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//ProprietePrimitive">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute javaBeans.ecore#//ProprietePrimitive/primitive"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//Propriete">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute javaBeans.ecore#//Propriete/property"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//Archive">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference javaBeans.ecore#//Archive/paquetage"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//Methode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute javaBeans.ecore#//Methode/modeAcces"/>
+    </genClasses>
+    <genClasses ecoreClass="javaBeans.ecore#//Paquetage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference javaBeans.ecore#//Paquetage/elements"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

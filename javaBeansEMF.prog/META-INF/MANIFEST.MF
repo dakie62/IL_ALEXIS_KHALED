@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: javaBeansEMF.prog
+Bundle-SymbolicName: javaBeansEMF.prog; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ javaBeansEMF;bundle-version="0.1.0",
+ javaBeansEMF.edit;bundle-version="1.0.0",
+ javaBeansEMF.editor;bundle-version="1.0.0",
+ javaBeansEMF.tests;bundle-version="1.0.0",
+ org.eclipse.emf.ecore.xmi.source;bundle-version="2.12.0"

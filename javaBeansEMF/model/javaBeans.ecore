@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="javaBeans" nsURI="http:///javaBeans.ecore" nsPrefix="javaBeans">
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Evenement" eSuperTypes="#//ElementModele">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="conventionNommage"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="conventionNommage" value="self.nom.substring(1,1) =  self.nom.substring(1,1).toLower()"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProprieteBean" eSuperTypes="#//Propriete">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composant" eType="#//Composant"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementModele">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="motsReserves"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="motsReserves" value="self.nom &lt;> 'class' and self.nom &lt;> 'paquetage'&#xA;&#x9;&#x9;and self.nom &lt;> 'composant' and self.nom &lt;> 'proprietePrimitive'&#xA;&#x9;&#x9;and self.nom &lt;> 'propriete' and self.nom &lt;> 'archive' and self.nom &lt;> 'methode'"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nom" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="kind" value="attributeWildcard"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proprietaire" eType="#//Paquetage"
+        eOpposite="#//Paquetage/elements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Composant" eSuperTypes="#//ElementModele">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniciteNomProprietes uniciteNomMethodes"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniciteNomProprietes" value="self.proprietes->forAll( e1,e2 : Propriete |&#xA;&#x9;&#x9;&#x9;e1.nom = e2.nom implies e1=e2)"/>
+      <details key="uniciteNomMethodes" value="self.methodes->forAll( e1,e2 : Methode|&#xA;&#x9;&#x9;&#x9;e1.nom = e2.nom implies e1=e2)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proprietes" upperBound="-1"
+        eType="#//Propriete" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodes" upperBound="-1"
+        eType="#//Methode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declenche" upperBound="-1"
+        eType="#//Evenement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ecoute" upperBound="-1"
+        eType="#//Evenement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProprietePrimitive" eSuperTypes="#//Propriete">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="primitive" eType="#//Primitive"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Propriete" eSuperTypes="#//ElementModele">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="conventionNommage"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="conventionNommage" value="self.nom.substring(1,1) =  self.nom.substring(1,1).toLower()"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" lowerBound="1"
+        eType="#//Property">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="processing" value="skip"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Archive" eSuperTypes="#//ElementModele">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="paquetage" upperBound="-1"
+        eType="#//Paquetage" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Methode" eSuperTypes="#//ElementModele">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="conventionNommage"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="conventionNommage" value="self.nom.substring(1,1) =  self.nom.substring(1,1).toLower()"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modeAcces" lowerBound="1"
+        eType="#//ModeAcces"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Paquetage" eSuperTypes="#//ElementModele">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniciteNoms conventionNommage"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniciteNoms" value="self.elements->forAll( e1, e2 : ElementModele |&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;e1.nom = e2.nom implies e1=e2)"/>
+      <details key="conventionNommage" value="self.nom.substring(1,1) =  self.nom.substring(1,1).toLower()"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//ElementModele" containment="true" eOpposite="#//ElementModele/proprietaire"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModeAcces">
+    <eLiterals name="publique"/>
+    <eLiterals name="privee" value="1"/>
+    <eLiterals name="protege" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Primitive">
+    <eLiterals name="boolean"/>
+    <eLiterals name="byte" value="1"/>
+    <eLiterals name="char" value="2"/>
+    <eLiterals name="short" value="3"/>
+    <eLiterals name="int" value="4"/>
+    <eLiterals name="long" value="5"/>
+    <eLiterals name="float" value="6"/>
+    <eLiterals name="double" value="7"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Property">
+    <eLiterals name="simple"/>
+    <eLiterals name="indexee" value="1"/>
+    <eLiterals name="liée" value="2"/>
+    <eLiterals name="contrainte" value="3"/>
+  </eClassifiers>
+</ecore:EPackage>
